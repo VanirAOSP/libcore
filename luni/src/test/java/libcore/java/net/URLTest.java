@@ -787,26 +787,4 @@ public final class URLTest extends TestCase {
         assertNull(url.getUserInfo());
         assertTrue(url.getHost().isEmpty());
     }
-
-    // http://b/31858037
-    public void testFragmentWithSlash() throws Exception {
-        final String host = "example.com";
-        final String fragment = "@not-a-host-name/a";
-        URL url = new URL(String.format("http://%s#%s", host, fragment));
-        assertNull(url.getUserInfo());
-        assertEquals(host, url.getAuthority());
-        assertEquals(host, url.getHost());
-        assertEquals(fragment, url.getRef());
-    }
-
-    // http://b/31858037
-    public void testFragmentWithQuery() throws Exception {
-        final String host = "example.com";
-        final String fragment = "@not-a-host-name?a";
-        URL url = new URL(String.format("http://%s#%s", host, fragment));
-        assertNull(url.getUserInfo());
-        assertEquals(host, url.getAuthority());
-        assertEquals(host, url.getHost());
-        assertEquals(fragment, url.getRef());
-    }
 }
